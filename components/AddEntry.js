@@ -12,6 +12,7 @@ import CustomSlider from './CustomSlider';
 import Steppers from './Steppers';
 import DateHeader from './DateHeader';
 import TextButton from './TextButton';
+import { submitEntry, removeEntry } from '../utils/api';
 
 function SubmitButton({ onPress }) {
   return (
@@ -65,6 +66,8 @@ class App extends Component {
     const key = timeToString();
     const entry = this.state;
 
+    submitEntry({ key, entry });
+
     // Update Redux
 
     this.setState(() => ({
@@ -87,7 +90,8 @@ class App extends Component {
 
     // Update Redux
     // Route to home
-    // Update database
+
+    removeEntry(key);
   };
 
   render() {
